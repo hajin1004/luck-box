@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUCKY 6:4 BOX</title>
+    <style>
+        body { background-color: #000; color: #fff; font-family: -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .loader { text-align: center; }
+        /* 로딩 애니메이션 (있어 보이게) */
+        .spinner { width: 50px; height: 50px; border: 5px solid #333; border-top: 5px solid #f4c20d; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+    <div class="loader">
+        <div class="spinner"></div>
+        <h2 style="color: #f4c20d;">RANDOM PLAYING...</h2>
+        <p style="color: #888; font-size: 14px;">잠시 후 페이지로 이동합니다.</p>
+    </div>
+
+    <script>
+        // 1. 영상 리스트 (이미 잘 넣어놨네!)
+        const videoLinks = [
+            "https://image2url.com/r2/default/videos/1773757057551-2b5fe024-98af-4ad6-ad62-a233ca83f3e2.mp4",
+            "https://image2url.com/r2/default/videos/1773757406771-8c34d23e-5d10-4f08-aeae-0f58f5bf1c93.mp4",
+            "https://image2url.com/r2/default/videos/1773757454966-dabbda65-27f1-4846-bf98-1984d3cf37ad.mp4"
+        ];
+
+        // 2. 광고(쿠팡) 리스트
+        const adLinks = [
+            "https://link.coupang.com/a/dLXD5X",
+            "https://link.coupang.com/a/dN4QKg",
+            "https://link.coupang.com/a/dN4R06"
+        ];
+
+        // 페이지가 열리자마자 실행되는 함수
+        window.onload = function() {
+            const rand = Math.random();
+            let finalUrl = "";
+
+            if (rand < 0.6) {
+                // 60% 확률: 영상 랜덤
+                finalUrl = videoLinks[Math.floor(Math.random() * videoLinks.length)];
+            } else {
+                // 40% 확률: 광고 랜덤
+                finalUrl = adLinks[Math.floor(Math.random() * adLinks.length)];
+            }
+
+            // 너무 순식간에 지나가면 유저가 놀랄 수 있으니 0.4초만 로딩 보여주고 이동
+            setTimeout(function() {
+                window.location.href = finalUrl;
+            }, 400);
+        };
+    </script>
+</body>
+</html>
